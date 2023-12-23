@@ -1,32 +1,31 @@
 import React from "react";
 import style from "./Nav.module.css";
-import { Outlet ,useNavigate} from "react-router-dom";
+import { Outlet, NavLink } from "react-router-dom";
 
- 
 function Nav() {
-  const navigate=useNavigate();
   return (
     <>
-    <nav>
-      <div className={style.nav_container}>
-        <div className={style.nav_title_wrapper}>
-          <img onClick={()=>(
-            navigate('/')
-          )}
-            className={style.logo}
-            src="https://files.codingninjas.in/pl-ninja-16706.svg"
-            alt="logo"
-          />
-          <h4>Coding Ninjas</h4>
+      <nav>
+        <div className={style.nav_container}>
+          <div className={style.nav_title_wrapper}>
+            <NavLink to='/'>
+            <img 
+              className={style.logo}
+              src="https://files.codingninjas.in/pl-ninja-16706.svg"
+              alt="logo"
+            /></NavLink>
+            <h4>Coding Ninjas</h4>
+          </div>
+          <div className={style.nav_details}>
+            <button>
+              <NavLink to={"/courses"}>
+                {({isActive}) => (isActive ? "on couses" : "Go to Courses")}
+              </NavLink>
+            </button>
+          </div>
         </div>
-        <div className={style.nav_details}>
-          <button onClick={()=>(
-            navigate('/courses')
-          )}>Courses</button>
-        </div>
-      </div>
-    </nav>
-    <Outlet/>
+      </nav>
+      <Outlet />
     </>
   );
 }
