@@ -7,6 +7,7 @@ import {
 } from "react-router-dom";
 import Page404 from "./pages/misc/Page404/Page404";
 import Details from "./pages/app/details/Details";
+import Learn from "./pages/app/learn/Learn";
 function App() {
   const router = createBrowserRouter([
     {
@@ -26,8 +27,12 @@ function App() {
             {
               path:':courseId',element:<Details />
             }
-          ],
+          ]
+         
         },
+        {
+          path:'/learn/:courseId' ,element:<Learn/>,
+        }
       ],
     },
   ]);
