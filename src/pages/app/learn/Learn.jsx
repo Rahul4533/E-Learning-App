@@ -1,14 +1,15 @@
 import React from "react";
 import style from "./Learn.module.css";
 import coursesData from "../../../data/courses.json";
-import { Link, useParams } from "react-router-dom";
+import { Link, Outlet, useParams } from "react-router-dom";
 // Task4: Import all the required elements from the react-router-dom
 
 function Learn() {
   const { courseId } = useParams();
   const course = coursesData.find((course) => course.id === courseId);
-  console.log(course);
+   
   return (
+    <>
     <div className={style.courses_container}>
       <div className={style.top_head}>
         {/* Task4: Create Link to go back to the Courses page */}
@@ -23,24 +24,32 @@ function Learn() {
         <div className={style.chapters}>
           <h1>Chapters</h1>
           <hr />
-          <ul>
+       <ul>
             {/*Task4: List of Chapters must be rendered here  */}
             {course.chapters.map((chapter, i) => {
               return (
-                <div className={style.chapterId} key={i}>
+                
+                <Link to={`chapter/${chapter.chapter}`}>  <div className={style.chapterId} key={i}>
+                
                   {chapter.title}
+                  
                 </div>
+               
+                </Link>
               );
             })}
           </ul>
+          
         </div>
 
         <div className={style.courses}>
           {/**Task5:  Chapter Details Must be rendered here */}
           {course.chapters.map((details)=>details.details)}
+         <Outlet context={{...course}}/>
         </div>
       </div>
     </div>
+  </>
   );
 }
 
