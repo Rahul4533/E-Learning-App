@@ -37,6 +37,7 @@ function Learn() {
 
         <div className={style.courses}>
           {/**Task5:  Chapter Details Must be rendered here */}
+          {course.chapters.map((details)=>details.details)}
         </div>
       </div>
     </div>
